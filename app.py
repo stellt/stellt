@@ -15,10 +15,10 @@ def message():
     user_message = data.get("message")
     character_profile = data.get("character", "Helpful AI")
 
-    # Simple OpenAI call (you can replace with real character logic later)
-    from openai import OpenAI
+# Simple OpenAI call (you can replace with real character logic later)
+from openai import OpenAI
 
-    client = OpenAI()
+client = OpenAI()
 
 response = client.chat.completions.create(
     model="gpt-3.5-turbo",
