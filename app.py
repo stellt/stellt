@@ -16,15 +16,18 @@ def message():
     character_profile = data.get("character", "Helpful AI")
 
     # Simple OpenAI call (you can replace with real character logic later)
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": f"You are {character_profile}."},
-            {"role": "user", "content": user_message},
-        ]
-    )
+    from openai import OpenAI
 
-    reply = response.choices[0].message.content.strip()
+    client = OpenAI()
+
+response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": user_message}
+    ]
+)
+reply = response.choices[0].message.content
     return jsonify({"reply": reply})
 
 if __name__ == '__main__':
